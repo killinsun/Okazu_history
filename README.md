@@ -1,4 +1,8 @@
-# i_can_cook_these
+# Okazu history
+
+Are you tireing of thinking about your daily menu?
+Are you having a trouble with your partner by it?
+If you tell me what you can cook it, we support for you.
 
 ## Project setup
 ```
