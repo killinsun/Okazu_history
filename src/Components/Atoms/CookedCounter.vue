@@ -1,5 +1,5 @@
 <template>
-  <div class='counter' @click='addCount'>
+  <div class='counter' @click='incrementCount'>
     <span> {{ counter }} </span>
   </div>
 </template>
@@ -17,7 +17,7 @@ export default {
     }
   },
   methods: {
-    addCount: function () {
+    incrementCount: function () {
       this.$emit('TappedCounter')
     }
   }

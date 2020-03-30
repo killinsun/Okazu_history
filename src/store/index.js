@@ -63,6 +63,20 @@ export const mutations = {
     filtered.forEach(r => {
       r.favorited = !r.favorited
     })
+  },
+  /*
+    * Increment coocked counter
+    * @state {Object} this Store's state
+    * @id Recipie's ID
+  */
+  INCREMENT_COOCKED_COUNTER (state, { id }) {
+    const filtered = state.recipies.filter(r => {
+      return r.id === id
+    })
+
+    filtered.forEach(r => {
+      r.count++
+    })
   }
 }
 

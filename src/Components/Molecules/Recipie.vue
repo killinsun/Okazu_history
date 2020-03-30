@@ -23,7 +23,7 @@
         <FavIcon :recipieId='recipie.id' :favorited='recipie.favorited'/>
       </div>
       <div class='cookedCounter'>
-        <CookedCounter :recipieId='recipie.id' :counter='recipie.count' />
+        <CookedCounter :recipieId='recipie.id' :counter='recipie.count' v-on:TappedCounter='incrementCounter()' />
       </div>
     </div>
   </div>
@@ -45,6 +45,11 @@ export default {
     recipie: {
       required: true,
       Type: Object
+    }
+  },
+  methods: {
+    incrementCounter: function () {
+      this.$store.commit('INCREMENT_COOCKED_COUNTER', { id: this.recipie.id })
     }
   }
 
