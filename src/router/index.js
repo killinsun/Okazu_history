@@ -13,7 +13,7 @@ const routes = [
   {
     path: '/create',
     name: 'Create a new recipie',
-    component: () => import('@/views/CreateEdit.vue')
+    component: () => import('@/views/CreateEditView.vue')
   }
 ]
 

@@ -9,7 +9,7 @@ export const mutations = {
     * @state {Object} this Store's state
     * @name {String} Recipie's name
     */
-  CREATE_NEW_RECIPIE (state, { name }) {
+  CREATE_NEW_RECIPIE (state, { name, imageSrc }) {
     state.recipies.push(
       {
         id: state.nextRecipieId,
@@ -17,7 +17,8 @@ export const mutations = {
         count: 0,
         lastDate: null,
         deleted: false,
-        favorite: false
+        favorited: false,
+        imageSrc: imageSrc
       }
     )
     state.nextRecipieId++
@@ -39,6 +40,7 @@ export const mutations = {
       if (recipie.lastDate) r.lastDate = recipie.lastDate
       if (recipie.deleted) r.deleted = recipie.deleted
       if (recipie.favorited) r.favorited = recipie.favorited
+      if (recipie.imageSrc) r.imageSrc = recipie.imageSrc
     })
   },
 
@@ -86,37 +88,14 @@ export default new Vuex.Store({
       {
         id: 0,
         name: '無限キャベツ',
-        count: 10,
+        count: 0,
         lastDate: '2020/01/01',
         deleted: false,
-        favorited: true
-      },
-      {
-        id: 1,
-        name: '無限人参',
-        count: 10,
-        lastDate: '2020/01/01',
-        deleted: false,
-        favorited: true
-      },
-      {
-        id: 2,
-        name: '無限ピーマン',
-        count: 10,
-        lastDate: '2020/01/01',
-        deleted: false,
-        favorited: true
-      },
-      {
-        id: 3,
-        name: 'ご飯が吹き飛ぶやつ',
-        count: 10,
-        lastDate: '2020/01/01',
-        deleted: false,
-        favorited: true
+        favorited: true,
+        imageSrc: '/noimage.jpg'
       }
     ],
-    nextRecipieId: 4
+    nextRecipieId: 1
   },
   mutations,
   actions: {

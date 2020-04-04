@@ -10,10 +10,11 @@ describe('mutations', () => {
         count: 0,
         lastDate: null,
         deleted: false,
-        favorited: false
+        favorited: false,
+        imageSrc: '/noimage.jpg'
       }]
     }
-    mutations.CREATE_NEW_RECIPIE(state, { name: 'test' })
+    mutations.CREATE_NEW_RECIPIE(state, { name: 'test', imageSrc: '/test.jpg' })
     expect(state.recipies.length).to.equal(2)
   })
   it('UPDATE_RECIPIE_STATE', () => {
@@ -24,7 +25,8 @@ describe('mutations', () => {
         count: 0,
         lastDate: null,
         deleted: false,
-        favorited: false
+        favorited: false,
+        imageSrc: '/noimage.jpg'
       }]
     }
     const recipie = {
@@ -38,6 +40,7 @@ describe('mutations', () => {
     expect(state.recipies[0].lastDate).to.equal(null)
     expect(state.recipies[0].deleted).to.equal(false)
     expect(state.recipies[0].favorited).to.equal(false)
+    expect(state.recipies[0].imageSrc).to.equal('/noimage.jpg')
   })
   it('TOGGLE_FAV_RECIPIE', () => {
     const state = {
