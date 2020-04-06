@@ -1,10 +1,22 @@
 <template>
   <div id="app">
     <header>
+      <Authentication />
     </header>
     <router-view/>
   </div>
 </template>
+
+<script>
+import Authentication from '@/Components/Molecules/Authentication.vue'
+
+export default {
+  name: 'App',
+  components: {
+    Authentication
+  }
+}
+</script>
 
 <style>
 html {

@@ -9,6 +9,9 @@ import Recipie from '@/Components/Molecules/Recipie.vue'
 
 export default {
   name: 'Recipies',
+  created: function () {
+    this.$store.dispatch('fetch_recipies')
+  },
   components: {
     Recipie
   },

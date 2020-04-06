@@ -9,7 +9,7 @@ export default {
   name: 'FavIcon',
   props: {
     recipieId: {
-      type: Number,
+      type: String,
       required: true
     },
     favorited: {
@@ -24,7 +24,6 @@ export default {
   },
   methods: {
     toggleFav () {
-      console.log('foga')
       this.$store.commit('TOGGLE_FAV_RECIPIE', { id: this.recipieId })
     }
   }

@@ -68,9 +68,8 @@ export default {
   },
   methods: {
     createNewRecipie: function () {
-      this.$store.commit('CREATE_NEW_RECIPIE', {
-        name: this.recipieName,
-        imageSrc: this.recipieImage
+      this.$store.dispatch('store_new_recipie', {
+        name: this.recipieName
       })
       this.innerRecipieName = ''
       this.$router.push('/')

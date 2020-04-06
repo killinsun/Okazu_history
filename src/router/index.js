@@ -14,6 +14,11 @@ const routes = [
     path: '/create',
     name: 'Create a new recipie',
     component: () => import('@/views/CreateEditView.vue')
+  },
+  {
+    path: '/firebase-testing',
+    name: 'Firebase test page',
+    component: () => import('@/views/FirebaseTesting.vue')
   }
 ]
 
