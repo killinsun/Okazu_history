@@ -110,6 +110,11 @@ export default new Vuex.Store({
     },
     userStatus (state) {
       return state.status
+    },
+    getRecipieById: (state) => (id) => {
+      return state.recipies.filter(recipie => {
+        return recipie.id === id
+      })
     }
   },
   mutations,
@@ -132,6 +137,15 @@ export default new Vuex.Store({
       const fetchedRecipies = await firebase.fetchAllDoc('recipies')
       const recipies = utils.transformRecipieObject(fetchedRecipies)
       if (recipies != null) { this.commit('STORE_RECIPIES', { recipies: recipies }) }
+    },
+
+    async toggle_fav_status ({ commit }, payload) {
+      const afterFavStatus = !payload.favorited
+
+      await firebase.updateDoc('recipies', payload.id, {
+        favorited: afterFavStatus
+      })
+      this.commit('TOGGLE_FAV_RECIPIE', { id: payload.id })
     }
 
   },

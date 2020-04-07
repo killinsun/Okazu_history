@@ -24,7 +24,7 @@ export default {
   },
   methods: {
     toggleFav () {
-      this.$store.commit('TOGGLE_FAV_RECIPIE', { id: this.recipieId })
+      this.$store.dispatch('toggle_fav_status', { id: this.recipieId, favorited: this.favorited })
     }
   }
 }
