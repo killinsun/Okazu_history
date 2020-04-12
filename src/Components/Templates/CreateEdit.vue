@@ -72,7 +72,7 @@ export default {
         name: this.recipieName
       })
       this.innerRecipieName = ''
-      this.$router.push('/')
+      this.$router.push('/', () => {}, () => {})
     },
     updateRecipie: function () {
       // TODO: implement this

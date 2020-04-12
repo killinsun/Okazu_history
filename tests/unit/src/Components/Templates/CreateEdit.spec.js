@@ -65,15 +65,9 @@ describe('CreateEdit.vue', () => {
 
     describe('Click', () => {
       it('should be triggered action', () => {
-        const mockRouterPush = sinon.stub()
         const wrapper = shallowMount(Component, {
           propsData: {
             create: true
-          },
-          mocks: {
-            $router: {
-              push: mockRouterPush
-            }
           },
           store,
           router,
