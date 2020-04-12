@@ -30,6 +30,7 @@ describe('CreateEdit.vue', () => {
   const actions = {
     store_new_recipie: sinon.stub()
   }
+
   describe('Elements', () => {
     describe('when create', () => {
       it('should appear Create button', () => {

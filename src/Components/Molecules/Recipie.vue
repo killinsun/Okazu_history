@@ -3,21 +3,23 @@
     <div class='leftItems'>
       <ThumbnailPic :imageSrc='recipie.image'/>
     </div>
-    <div class='middleItems'>
-      <div class='recipieName'>
-        <span>
-          {{ recipie.name }}
-        </span>
+      <div class='middleItems'>
+        <router-link :to="{ name: 'Edit', params: { id: recipie.id } } ">
+          <div class='recipieName'>
+            <span>
+              {{ recipie.name }}
+            </span>
+          </div>
+          <div class='lastCooked'>
+            <div>
+              Last date
+            </div>
+            <span>
+              {{ recipie.lastDate }}
+            </span>
+          </div>
+      </router-link>
       </div>
-      <div class='lastCooked'>
-        <div>
-          Last date
-        </div>
-        <span>
-          {{ recipie.lastDate }}
-        </span>
-      </div>
-    </div>
     <div class='rightItems'>
       <div class='favorite'>
         <FavIcon :recipieId='recipie.id' :favorited='recipie.favorited'/>
@@ -78,6 +80,13 @@ export default {
     flex-grow: 5;
     text-align: left;
     position: relative;
+  }
+  .middleItems a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
   }
 
   .lastCooked {

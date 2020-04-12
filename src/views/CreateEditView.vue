@@ -1,6 +1,6 @@
 <template>
   <div class="createEditView">
-    <CreateEdit :create=true />
+    <CreateEdit :id='this.id' />
   </div>
 </template>
 
@@ -9,6 +9,11 @@ import CreateEdit from '@/Components/Templates/CreateEdit.vue'
 
 export default {
   name: 'CreateEditView',
+  props: {
+    id: {
+      type: String
+    }
+  },
   components: {
     CreateEdit
   }

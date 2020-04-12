@@ -18,9 +18,10 @@ const routes = [
     component: () => import('@/views/CreateEditView.vue')
   },
   {
-    path: '/edit',
+    path: '/edit/:id',
     name: 'Edit',
-    component: () => import('@/views/CreateEditView.vue')
+    component: () => import('@/views/CreateEditView.vue'),
+    props: true
   },
   {
     path: '/firebase-testing',

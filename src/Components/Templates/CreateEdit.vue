@@ -16,7 +16,7 @@
           type='button'
           class='createButton'
           @click='createNewRecipie'
-          v-if='create'
+          v-if='!id'
         >
           Create
         </button>
@@ -24,7 +24,7 @@
           type='button'
           class='updateButton'
           @click='updateRecipie'
-          v-if='!create'
+          v-if='id'
         >
           Update
         </button>
@@ -45,10 +45,9 @@ export default {
     }
   },
   props: {
-    create: {
-      type: Boolean,
-      require: true,
-      default: true
+    id: {
+      type: String,
+      default: ''
     },
     recipieImage: {
       type: String,
@@ -59,12 +58,17 @@ export default {
   computed: {
     innerRecipieName: {
       get: function () {
-        return this.recipieName
+        if (this.recipie === null || this.recipie === undefined) return null
+        return this.recipie.name
       },
       set: function (value) {
         this.recipieName = value
       }
+    },
+    recipie: function () {
+      return this.$store.getters.getRecipieById(this.id)
     }
+
   },
   methods: {
     createNewRecipie: function () {
