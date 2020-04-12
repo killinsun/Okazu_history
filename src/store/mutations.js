@@ -23,7 +23,7 @@ export default {
     * @state {Object} this Store's state
     * @recipie{Object} Recipie object which has updated states.
   */
-  UPDATE_RECIPIE_STATE (state, { recipie }) {
+  UPDATE_RECIPIE_STATE (state, recipie) {
     const filtered = state.recipies.filter(r => {
       return r.id === recipie.id
     })

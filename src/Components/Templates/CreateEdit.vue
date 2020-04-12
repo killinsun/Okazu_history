@@ -79,7 +79,13 @@ export default {
       this.$router.push('/', () => {}, () => {})
     },
     updateRecipie: function () {
-      // TODO: implement this
+      this.$store.dispatch('update_recipie', {
+        id: this.id,
+        name: this.recipieName,
+        imageSrc: '/noimage.jpg'
+      })
+      this.innerRecipieName = ''
+      this.$router.push('/', () => {}, () => {})
     }
   }
 }

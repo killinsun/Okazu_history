@@ -13,18 +13,16 @@ export default {
     }
 
     const docRef = await firebase.storeNewRecipie('recipies', recipie)
-    this.commit('CREATE_NEW_RECIPIE', docRef.id, recipie)
+    this.commit('CREATE_NEW_RECIPIE', { id: docRef.id, recipie: recipie })
   },
 
   async update_recipie ({ commit }, payload) {
-    const updatedRecipie = {
-      id: payload.id,
+    await firebase.updateDoc('recipies', payload.id, {
       name: payload.name,
-      imageSrc: payload.imageSrc
-    }
-
-    await firebase.updateDoc('recipies', payload.id, updatedRecipie)
-    this.commit('UPDATE_RECIPIE_STATE', updatedRecipie)
+      imageSrc: payload.imageSrc,
+      lastDate: new Date()
+    })
+    this.commit('UPDATE_RECIPIE_STATE', payload)
   },
 
   async fetch_recipies ({ commit }) {

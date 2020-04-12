@@ -7,7 +7,6 @@ export default {
   },
   getRecipieById: (state) => (id) => {
     return state.recipies.filter(recipie => {
-      console.log(recipie)
       return recipie.id === id
     })[0]
   }
