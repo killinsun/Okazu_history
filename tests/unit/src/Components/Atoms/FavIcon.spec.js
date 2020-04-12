@@ -27,9 +27,10 @@ describe('FavIcon.vue', () => {
     }
   }
 
-  const mutations = {
-    TOGGLE_FAV_RECIPIE: sinon.stub()
+  const actions = {
+    toggle_fav_status: sinon.stub()
   }
+
   describe('Elements', () => {
     describe('when recipie is favorited', () => {
       it('should have following classes fas fa-heart', () => {
@@ -60,12 +61,12 @@ describe('FavIcon.vue', () => {
     beforeEach(() => {
       store = new Vuex.Store({
         state,
-        mutations
+        actions
       })
     })
 
     describe('Click', () => {
-      it('should be triggered mutation', () => {
+      it('should be triggered action', () => {
         const wrapper = shallowMount(Component, {
           propsData: {
             favorited: false
@@ -74,7 +75,7 @@ describe('FavIcon.vue', () => {
           localVue
         })
         wrapper.trigger('click')
-        expect(mutations.TOGGLE_FAV_RECIPIE.called).to.equal(true)
+        expect(actions.toggle_fav_status.called).to.equal(true)
       })
     })
   })

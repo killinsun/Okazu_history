@@ -2,7 +2,9 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 
-Vue.use(VueRouter)
+if (!process || process.env.NODE_ENV !== 'test') {
+  Vue.use(VueRouter)
+}
 
 const routes = [
   {
@@ -12,12 +14,17 @@ const routes = [
   },
   {
     path: '/create',
-    name: 'Create a new recipie',
+    name: 'Create',
+    component: () => import('@/views/CreateEditView.vue')
+  },
+  {
+    path: '/edit',
+    name: 'Edit',
     component: () => import('@/views/CreateEditView.vue')
   },
   {
     path: '/firebase-testing',
-    name: 'Firebase test page',
+    name: 'FirebaseTestPage',
     component: () => import('@/views/FirebaseTesting.vue')
   }
 ]

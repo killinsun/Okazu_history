@@ -27,8 +27,8 @@ describe('CreateEdit.vue', () => {
     }
   }
 
-  const mutations = {
-    CREATE_NEW_RECIPIE: sinon.stub()
+  const actions = {
+    store_new_recipie: sinon.stub()
   }
   describe('Elements', () => {
     describe('when create', () => {
@@ -56,7 +56,7 @@ describe('CreateEdit.vue', () => {
     beforeEach(() => {
       store = new Vuex.Store({
         state,
-        mutations
+        actions
       })
       router = new Router(
         { path: '/', component: null }
@@ -64,17 +64,23 @@ describe('CreateEdit.vue', () => {
     })
 
     describe('Click', () => {
-      it('should be triggered mutation', () => {
+      it('should be triggered action', () => {
+        const mockRouterPush = sinon.stub()
         const wrapper = shallowMount(Component, {
           propsData: {
             create: true
+          },
+          mocks: {
+            $router: {
+              push: mockRouterPush
+            }
           },
           store,
           router,
           localVue
         })
         wrapper.find('.controlButton > button').trigger('click')
-        expect(mutations.CREATE_NEW_RECIPIE.called).to.equal(true)
+        expect(actions.store_new_recipie.called).to.equal(true)
       })
     })
   })

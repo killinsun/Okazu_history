@@ -1,5 +1,7 @@
-import firebase from 'firebase'
-import '@firebase/firestore'
+import * as firebase from 'firebase'
+import 'firebase/app'
+import 'firebase/auth'
+import 'firebase/firestore'
 import store from './store'
 
 const config = {
@@ -29,7 +31,6 @@ export default {
       user = user || {}
       store.commit('ON_AUTH_STATE_CHANGED', user)
       store.commit('ON_AUTH_STATUS_CHANGED', !!user.uid)
-      console.log('status changed!')
     })
   },
   storeNewRecipie (collection, recipie) {
