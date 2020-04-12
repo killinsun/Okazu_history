@@ -27,17 +27,35 @@ describe('CreateEdit.vue', () => {
     }
   }
 
+  const getters = {
+    getRecipieById: () => function (id) {
+      return { id: 'test', name: 'test', imageSrc: '/noimage.jpg' }
+    }
+  }
   const actions = {
     store_new_recipie: sinon.stub()
   }
+
+  beforeEach(() => {
+    store = new Vuex.Store({
+      state,
+      getters,
+      actions
+    })
+    router = new Router(
+      { path: '/', component: null }
+    )
+  })
 
   describe('Elements', () => {
     describe('when create', () => {
       it('should appear Create button', () => {
         const wrapper = shallowMount(Component, {
           propsData: {
-            create: true
-          }
+            id: undefined
+          },
+          store,
+          localVue
         })
         expect(wrapper.find('button').classes()).to.includes('createButton')
       })
@@ -46,24 +64,16 @@ describe('CreateEdit.vue', () => {
       it('should appear Update button', () => {
         const wrapper = shallowMount(Component, {
           propsData: {
-            create: false
-          }
+            id: 'hogehoge'
+          },
+          store,
+          localVue
         })
         expect(wrapper.find('button').classes()).to.includes('updateButton')
       })
     })
   })
   describe('Events', () => {
-    beforeEach(() => {
-      store = new Vuex.Store({
-        state,
-        actions
-      })
-      router = new Router(
-        { path: '/', component: null }
-      )
-    })
-
     describe('Click', () => {
       it('should be triggered action', () => {
         const wrapper = shallowMount(Component, {
