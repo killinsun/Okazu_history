@@ -17,10 +17,8 @@ export default {
   },
 
   async update_recipie ({ commit }, payload) {
-    await firebase.updateDoc('recipies', payload.id, {
-      name: payload.name,
-      imageSrc: payload.imageSrc
-    })
+    await firebase.updateDoc('recipies', payload.id, payload)
+
     this.commit('UPDATE_RECIPIE_STATE', payload)
   },
 

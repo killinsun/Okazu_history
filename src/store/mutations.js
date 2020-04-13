@@ -1,5 +1,10 @@
+import { format } from 'date-fns'
+
 export default {
   /*
+    * Store recipies from firebase
+    * @state {Object} this Store's state
+    * @{ recipies } {Object} recipies which are fetched by action
   */
   STORE_RECIPIES (state, { recipies }) {
     state.recipies = recipies
@@ -71,6 +76,7 @@ export default {
 
     filtered.forEach(r => {
       r.count++
+      r.lastDate = format(new Date(), 'yyyy/MM/dd')
     })
   },
   /*

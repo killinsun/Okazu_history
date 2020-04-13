@@ -59,7 +59,8 @@ export default {
     try {
       return firebase.firestore().collection(collection).doc(docId)
         .update({
-          [incrementItem]: firebase.firestore.FieldValue.increment(1)
+          [incrementItem]: firebase.firestore.FieldValue.increment(1),
+          lastDate: new Date()
         })
     } catch (e) {
       console.error(e)
