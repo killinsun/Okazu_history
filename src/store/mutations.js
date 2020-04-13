@@ -60,11 +60,11 @@ export default {
     })
   },
   /*
-    * Increment coocked counter
+    * Increment cooked counter
     * @state {Object} this Store's state
     * @id Recipie's ID
   */
-  INCREMENT_COOCKED_COUNTER (state, { id }) {
+  INCREMENT_COOKED_COUNTER (state, { id }) {
     const filtered = state.recipies.filter(r => {
       return r.id === id
     })

@@ -51,7 +51,7 @@ export default {
   },
   methods: {
     incrementCounter: function () {
-      this.$store.commit('INCREMENT_COOCKED_COUNTER', { id: this.recipie.id })
+      this.$store.dispatch('increment_cooked_counter', { id: this.recipie.id })
     }
   }
 

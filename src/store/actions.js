@@ -37,5 +37,10 @@ export default {
       favorited: afterFavStatus
     })
     this.commit('TOGGLE_FAV_RECIPIE', { id: payload.id })
+  },
+
+  async increment_cooked_counter ({ commit }, payload) {
+    await firebase.incrementDocField('recipies', payload.id, 'count')
+    this.commit('INCREMENT_COOKED_COUNTER', { id: payload.id })
   }
 }

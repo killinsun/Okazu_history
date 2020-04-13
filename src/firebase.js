@@ -54,5 +54,15 @@ export default {
     } catch (e) {
       console.error(e)
     }
+  },
+  incrementDocField (collection, docId, incrementItem) {
+    try {
+      return firebase.firestore().collection(collection).doc(docId)
+        .update({
+          [incrementItem]: firebase.firestore.FieldValue.increment(1)
+        })
+    } catch (e) {
+      console.error(e)
+    }
   }
 }
