@@ -2,9 +2,14 @@ import firebase from '@/firebase'
 import utils from '@/utils'
 
 export default {
+  fetch_user ({ commit }, user) {
+    this.commit('ON_AUTH_STATE_CHANGED', user)
+    this.commit('ON_AUTH_STATUS_CHANGED', !!user.uid)
+  },
   async store_new_recipie ({ commit }, payload) {
     const recipie = {
       name: payload.name,
+      gId: payload.gId,
       count: 0,
       lastDate: new Date(),
       deleted: false,
@@ -22,8 +27,8 @@ export default {
     this.commit('UPDATE_RECIPIE_STATE', payload)
   },
 
-  async fetch_recipies ({ commit }) {
-    const fetchedRecipies = await firebase.fetchAllDoc('recipies')
+  async fetch_recipies ({ commit }, payload) {
+    const fetchedRecipies = await firebase.fetchAllRecipies('recipies', payload.gId)
     const recipies = utils.transformRecipieObject(fetchedRecipies)
     if (recipies != null) { this.commit('STORE_RECIPIES', { recipies: recipies }) }
   },

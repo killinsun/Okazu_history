@@ -12,9 +12,6 @@ import firebase from '@/firebase'
 
 export default {
   name: 'Authentication',
-  created: function () {
-    firebase.onAuth()
-  },
   computed: {
     user () {
       return this.$store.getters.user
@@ -23,9 +20,15 @@ export default {
       return this.$store.getters.userStatus
     }
   },
+  watch: {
+    userStatus: function () {
+      this.$router.push('/', () => {}, () => {})
+    }
+  },
   methods: {
-    signIn: function () {
+    signIn: async function () {
       firebase.login()
+      firebase.storeNewUser()
     },
     signOut: function () {
       firebase.logout()

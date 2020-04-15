@@ -67,13 +67,17 @@ export default {
     },
     recipie: function () {
       return this.$store.getters.getRecipieById(this.id)
+    },
+    user: function () {
+      return this.$store.getters.user
     }
 
   },
   methods: {
     createNewRecipie: function () {
       this.$store.dispatch('store_new_recipie', {
-        name: this.recipieName
+        name: this.recipieName,
+        gId: this.user.gId
       })
       this.innerRecipieName = ''
       this.$router.push('/', () => {}, () => {})

@@ -27,11 +27,48 @@ export default {
     firebase.auth().signOut()
   },
   onAuth () {
-    firebase.auth().onAuthStateChanged(user => {
-      user = user || {}
-      store.commit('ON_AUTH_STATE_CHANGED', user)
-      store.commit('ON_AUTH_STATUS_CHANGED', !!user.uid)
+    return new Promise(function (resolve, reject) {
+      firebase.auth().onAuthStateChanged(async user => {
+        console.log('authenticating')
+        user = user || {}
+        if (Object.keys(user).length) {
+          const userRef = firebase.firestore().collection('users').doc(user.uid)
+          const userDoc = await userRef.get()
+          user.gId = userDoc.data().gId
+        }
+
+        store.dispatch('fetch_user', user)
+        resolve(user)
+      })
     })
+  },
+  storeNewGroup () {
+    try {
+      return firebase.firestore().collection('groups').add({ name: 'test' })
+    } catch (e) {
+      console.error(e)
+    }
+  },
+  async storeNewUser () {
+    const user = firebase.auth().currentUser
+    if (!user) return null
+
+    try {
+      const userRef = firebase.firestore().collection('users').doc(user.uid)
+      const userDoc = await userRef.get()
+      if (userDoc.exists) return null
+
+      const groupRef = await this.storeNewGroup()
+
+      firebase.firestore().collection('users').doc(user.uid).set({
+        userId: user.uid,
+        displayName: user.displayName,
+        email: user.email,
+        gId: groupRef.id
+      })
+    } catch (e) {
+      console.error(e)
+    }
   },
   storeNewRecipie (collection, recipie) {
     try {
@@ -41,9 +78,9 @@ export default {
       console.error(e)
     }
   },
-  fetchAllDoc (collection) {
+  fetchAllRecipies (collection, gId) {
     try {
-      return firebase.firestore().collection(collection).get()
+      return firebase.firestore().collection(collection).where('gId', '==', gId).get()
     } catch (e) {
       console.error(e)
     }
