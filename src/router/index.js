@@ -34,6 +34,11 @@ const routes = [
     component: () => import('@/views/Signin.vue')
   },
   {
+    path: '/profile',
+    name: 'Profile',
+    component: () => import('@/views/ProfileView.vue')
+  },
+  {
     path: '/firebase-testing',
     name: 'FirebaseTestPage',
     component: () => import('@/views/FirebaseTesting.vue')
