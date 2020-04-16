@@ -1,15 +1,20 @@
 <template>
   <div id="app">
     <header>
+      <Header />
     </header>
     <router-view />
   </div>
 </template>
 
 <script>
+import Header from '@/Components/Organisms/Header.vue'
 
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    Header
+  }
 }
 </script>
 
@@ -49,4 +54,5 @@ header {
   left: 0;
   z-index: 100;
 }
+
 </style>

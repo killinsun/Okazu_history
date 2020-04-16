@@ -1,7 +1,6 @@
 <template>
   <div class='recipies'>
     <Recipie v-for='recipie in recipies' :key='recipie.name' :recipie='recipie' />
-    <button type='button' @click='load'>Load</button>
   </div>
 </template>
 
