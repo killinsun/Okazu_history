@@ -16,15 +16,21 @@ export default {
       favorited: false,
       imageSrc: '/noimage.jpg'
     }
+    if (payload.file != null) {
+      recipie.imageSrc = await firebase.uploadImage(payload.uid, payload.id, payload.file)
+    }
 
     const docRef = await firebase.storeNewRecipie('recipies', recipie)
     this.commit('CREATE_NEW_RECIPIE', { id: docRef.id, recipie: recipie })
   },
 
   async update_recipie ({ commit }, payload) {
-    await firebase.updateDoc('recipies', payload.id, payload)
+    if (payload.file != null) {
+      payload.updatedItems.imageSrc = await firebase.uploadImage(payload.uid, payload.updatedItems.id, payload.file)
+    }
+    await firebase.updateDoc('recipies', payload.updatedItems.id, payload.updatedItems)
 
-    this.commit('UPDATE_RECIPIE_STATE', payload)
+    this.commit('UPDATE_RECIPIE_STATE', payload.updatedItems)
   },
 
   async fetch_recipies ({ commit }, payload) {

@@ -1,31 +1,40 @@
 <template>
   <div>
     <div>
+      <img :src='user.photoURL' wovn-ignore>
+    </div>
+    <div>
       <span> ID </span>
-      <span> {{ user.uid }} </span>
+      <span wovn-ignore> {{ user.uid }} </span>
     </div>
     <div>
-      <span> 名前 </span>
-      <span> {{ user.displayName }} </span>
+      <span> Name </span>
+      <span wovn-ignore> {{ user.displayName }} </span>
     </div>
     <div>
-      <span> プロフィール画像 </span>
-      <img :src='user.photoURL'>
+      <span> Group ID</span>
+      <span wovn-ignore> {{ user.gId }} </span>
     </div>
     <div>
-      <span> グループID </span>
-      <span> {{ user.gId }} </span>
+      <button type='button' @click='logout'>Logout</button>
     </div>
   </div>
-
 </template>
 
 <script>
+import firebase from '@/firebase'
+
 export default {
   name: 'Profile',
   computed: {
     user () {
       return this.$store.getters.user
+    }
+  },
+  methods: {
+    logout: function () {
+      firebase.logout()
+      this.$router.push('/signin', () => {}, () => {})
     }
   }
 

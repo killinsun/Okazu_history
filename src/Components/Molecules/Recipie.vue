@@ -1,7 +1,7 @@
 <template>
   <div class='recipie'>
     <div class='leftItems'>
-      <ThumbnailPic :imageSrc='recipie.image'/>
+      <img :src='recipie.imageSrc' />
     </div>
       <div class='middleItems'>
         <router-link :to="{ name: 'Edit', params: { id: recipie.id } } ">
@@ -32,14 +32,12 @@
 </template>
 
 <script>
-import ThumbnailPic from '@/Components/Atoms/ThumbnailPic.vue'
 import FavIcon from '@/Components/Atoms/FavIcon.vue'
 import CookedCounter from '@/Components/Atoms/CookedCounter.vue'
 
 export default {
   name: 'Recipie',
   components: {
-    ThumbnailPic,
     FavIcon,
     CookedCounter
   },
@@ -59,6 +57,10 @@ export default {
 </script>
 
 <style scoped>
+  img {
+    width: 3em;
+    height: auto;
+  }
   .recipie {
     max-height: 200px;
     margin: 0.5em 0.3em;

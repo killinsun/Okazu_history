@@ -29,14 +29,12 @@ export default {
   onAuth () {
     return new Promise(function (resolve, reject) {
       firebase.auth().onAuthStateChanged(async user => {
-        console.log('authenticating')
         user = user || {}
         if (Object.keys(user).length) {
           const userRef = firebase.firestore().collection('users').doc(user.uid)
           const userDoc = await userRef.get()
-          user.gId = userDoc.data().gId
+          if (userDoc.data() !== undefined) { user.gId = userDoc.data().gId }
         }
-
         store.dispatch('fetch_user', user)
         resolve(user)
       })
@@ -66,6 +64,8 @@ export default {
         email: user.email,
         gId: groupRef.id
       })
+      user.gId = groupRef.id
+      store.dispatch('fetch_user', user)
     } catch (e) {
       console.error(e)
     }
@@ -85,12 +85,18 @@ export default {
       console.error(e)
     }
   },
-  updateDoc (collection, docId, updatedItems) {
+  async updateDoc (collection, docId, updatedItems) {
     try {
       return firebase.firestore().collection(collection).doc(docId).update(updatedItems)
     } catch (e) {
       console.error(e)
     }
+  },
+  async uploadImage (uid, recipieId, file) {
+    const storage = firebase.storage()
+    const storageRef = storage.ref('users/' + uid + '/' + recipieId + '/images/' + file.name)
+    await storageRef.put(file)
+    return await storage.ref('users/' + uid + '/' + recipieId + '/images/' + file.name).getDownloadURL()
   },
   incrementDocField (collection, docId, incrementItem) {
     try {

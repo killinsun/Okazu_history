@@ -22,13 +22,13 @@ export default {
   },
   watch: {
     userStatus: function () {
+      firebase.storeNewUser()
       this.$router.push('/', () => {}, () => {})
     }
   },
   methods: {
-    signIn: async function () {
+    signIn: function () {
       firebase.login()
-      firebase.storeNewUser()
     },
     signOut: function () {
       firebase.logout()

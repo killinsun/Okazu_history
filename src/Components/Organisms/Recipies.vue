@@ -1,6 +1,6 @@
 <template>
   <div class='recipies'>
-    <Recipie v-for='recipie in recipies' :key='recipie.name' :recipie='recipie' />
+    <Recipie v-for='recipie in recipies' :key='recipie.id' :recipie='recipie' />
   </div>
 </template>
 
@@ -12,12 +12,12 @@ export default {
   components: {
     Recipie
   },
-  mounted: function () {
+  created: function () {
+    if (this.recipies.length !== 0) return
     this.load()
   },
   computed: {
     user: function () {
-      console.log('---computed----')
       return this.$store.getters.user
     },
     recipies: function () {
@@ -27,7 +27,6 @@ export default {
   methods: {
     load: function () {
       this.$store.dispatch('fetch_recipies', { gId: this.user.gId })
-      console.log('dispatched')
     }
   }
 }
