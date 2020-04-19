@@ -103,14 +103,15 @@ export default {
         }
         img.src = e.target.result
       }
-      console.log('file', file)
       reader.readAsDataURL(file)
     },
     createNewRecipie: function () {
       this.$store.dispatch('store_new_recipie', {
-        name: this.name,
-        uid: this.user.id,
+        uid: this.user.uid,
         gId: this.user.gId,
+        newRecipieItem: {
+          name: this.name
+        },
         file: this.uploadedFile
       })
       this.name = ''
@@ -118,9 +119,9 @@ export default {
     },
     updateRecipie: function () {
       this.$store.dispatch('update_recipie', {
-        uid: this.user.id,
+        uid: this.user.uid,
         updatedItems: {
-          id: this.id,
+          recipieId: this.id,
           name: this.name,
           imageSrc: this.imageSrc
         },

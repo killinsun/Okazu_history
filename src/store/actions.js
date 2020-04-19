@@ -8,7 +8,7 @@ export default {
   },
   async store_new_recipie ({ commit }, payload) {
     const recipie = {
-      name: payload.name,
+      name: payload.newRecipieItem.name,
       gId: payload.gId,
       count: 0,
       lastDate: new Date(),
@@ -16,19 +16,19 @@ export default {
       favorited: false,
       imageSrc: '/noimage.jpg'
     }
-    if (payload.file != null) {
-      recipie.imageSrc = await firebase.uploadImage(payload.uid, payload.id, payload.file)
-    }
 
     const docRef = await firebase.storeNewRecipie('recipies', recipie)
+    if (payload.file != null) {
+      recipie.imageSrc = await firebase.uploadImage(payload.uid, docRef.id, payload.file)
+    }
     this.commit('CREATE_NEW_RECIPIE', { id: docRef.id, recipie: recipie })
   },
 
   async update_recipie ({ commit }, payload) {
     if (payload.file != null) {
-      payload.updatedItems.imageSrc = await firebase.uploadImage(payload.uid, payload.updatedItems.id, payload.file)
+      payload.updatedItems.imageSrc = await firebase.uploadImage(payload.uid, payload.updatedItems.recipieId, payload.file)
     }
-    await firebase.updateDoc('recipies', payload.updatedItems.id, payload.updatedItems)
+    await firebase.updateDoc('recipies', payload.updatedItems.recipieId, payload.updatedItems)
 
     this.commit('UPDATE_RECIPIE_STATE', payload.updatedItems)
   },
