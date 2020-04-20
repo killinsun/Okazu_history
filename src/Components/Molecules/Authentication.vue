@@ -35,7 +35,6 @@ export default {
     },
     load: async function () {
       this.$store.dispatch('fetch_recipies')
-      console.log('action dispatched!')
     }
   }
 }
