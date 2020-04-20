@@ -44,7 +44,7 @@ export default {
     try {
       return firebase.firestore().collection('groups').add({ name: 'test' })
     } catch (e) {
-      console.error(e)
+      // console.error(e)
     }
   },
   async storeNewUser () {
@@ -67,7 +67,7 @@ export default {
       user.gId = groupRef.id
       store.dispatch('fetch_user', user)
     } catch (e) {
-      console.error(e)
+      // console.error(e)
     }
   },
   storeNewRecipie (collection, recipie) {
@@ -75,21 +75,21 @@ export default {
       const docRef = firebase.firestore().collection(collection).add(recipie)
       return docRef
     } catch (e) {
-      console.error(e)
+      // console.error(e)
     }
   },
   fetchAllRecipies (collection, gId) {
     try {
       return firebase.firestore().collection(collection).where('gId', '==', gId).get()
     } catch (e) {
-      console.error(e)
+      // console.error(e)
     }
   },
   updateDoc (collection, docId, updatedItems) {
     try {
       return firebase.firestore().collection(collection).doc(docId).update(updatedItems)
     } catch (e) {
-      console.error(e)
+      // console.error(e)
     }
   },
   async uploadImage (uid, recipieId, file) {
@@ -106,7 +106,7 @@ export default {
           lastDate: new Date()
         })
     } catch (e) {
-      console.error(e)
+      // console.error(e)
     }
   }
 }
