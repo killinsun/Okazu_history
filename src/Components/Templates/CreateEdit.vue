@@ -2,9 +2,12 @@
   <main>
     <div class='thumbnailPic'>
       <label>
-        <img :src=imageSrc>
+        <img class='recipie-thumbnail' :src=imageSrc v-if='!isResizing'>
         <input type='file' @change='fileChanged' />
       </label>
+      <div v-if='isResizing' class='loading resize'>
+        <p>Now resizing...</p>
+      </div>
     </div>
     <div class='recipieNameWrapper'>
       <label>Name</label>
@@ -20,6 +23,7 @@
           class='createButton'
           @click='createNewRecipie'
           v-if='!id'
+          :disabled='isResizing'
         >
           Create
         </button>
@@ -28,6 +32,7 @@
           class='updateButton'
           @click='updateRecipie'
           v-if='id'
+          :disabled='isResizing'
         >
           Update
         </button>
@@ -75,6 +80,8 @@ export default {
     },
     createImage (file) {
       const reader = new FileReader()
+      this.isResizing = true
+
       reader.onload = e => {
         this.imageSrc = e.target.result
         const img = new Image()
@@ -99,6 +106,7 @@ export default {
             })
             this.smallImage = imageFile
             this.uploadedFile = imageFile
+            this.isResizing = false
           }, file.type, 1)
         }
         img.src = e.target.result
@@ -138,6 +146,15 @@ export default {
 
 label > input {
   display: none;
+}
+
+.thumbnailPic {
+  margin: auto;
+  position: relative;
+  max-width: 400px;
+}
+.thumbnailPic > label > img {
+  max-width: 400px;
 }
 
 </style>

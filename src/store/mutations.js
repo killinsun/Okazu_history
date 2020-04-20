@@ -30,7 +30,7 @@ export default {
   */
   UPDATE_RECIPIE_STATE (state, recipie) {
     const filtered = state.recipies.filter(r => {
-      return r.id === recipie.id
+      return r.id === recipie.recipieId
     })
 
     filtered.forEach(r => {

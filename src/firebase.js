@@ -85,7 +85,7 @@ export default {
       console.error(e)
     }
   },
-  async updateDoc (collection, docId, updatedItems) {
+  updateDoc (collection, docId, updatedItems) {
     try {
       return firebase.firestore().collection(collection).doc(docId).update(updatedItems)
     } catch (e) {
