@@ -10,10 +10,9 @@
       </div>
     </div>
     <div class='recipieNameWrapper'>
-      <label>Name</label>
       <input
         type='text'
-        placeholder='Input a recipie`s name'
+        placeholder='Recipie Name'
         v-model='name'
       />
     </div>
@@ -148,6 +147,51 @@ label > input {
   display: none;
 }
 
+.recipieNameWrapper {
+  position: relative;
+  width: 95%;
+  margin: 40px auto;
+}
+
+@media (min-width: 800px) {
+  .recipieNameWrapper {
+    width: 50%;
+  }
+}
+
+.recipieNameWrapper input[type='text'] {
+  color: #4b7447;
+  font-size: 1em;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0.3em;
+  padding-left: 40px;
+  letter-spacing: 1px;
+  border: 0;
+}
+.recipieNameWrapper input[type='text']:focus {
+  outline: none;
+}
+
+.recipieNameWrapper input[type='text']:focus::after {
+  outline: none;
+}
+
+input:focus {
+  width: 55vw;
+  outline: none;
+}
+.recipieNameWrapper::after {
+  display: block;
+  width: 100%;
+  height: 4px;
+  margin-top: -1px;
+  content: '';
+  border-width: 0 1px 1px 1px;
+  border-style: solid;
+  border-color: #eb8a44;
+}
+
 .thumbnailPic {
   margin: auto;
   position: relative;
@@ -155,6 +199,29 @@ label > input {
 }
 .thumbnailPic > label > img {
   max-width: 400px;
+}
+
+button[type='button'] {
+  display: inline-block;
+  padding: 0.3em 1em;
+  font-size: 1em;
+  text-decoration: none;
+  color: #eb8a44;
+  border: solid 2px #eb8a44;
+  background: #ffffff;
+  border-radius: 3px;
+  transition: .4s;
+}
+button[type='button']:hover {
+  background: #eb8a44;
+  color: white;
+}
+
+button[type='button']:disabled {
+  background: #ffffff;
+  border: solid 2px #aaaaaa;
+  color: #dddddd;
+  transition: .0s;
 }
 
 </style>

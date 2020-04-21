@@ -3,7 +3,6 @@
     <button type='button' @click='signIn' v-if='!userStatus'>Login</button>
     <button type='button' @click='signOut' v-if='userStatus'>Logout</button>
     <span v-if='userStatus'> {{ user.displayName }} </span>
-    <span><router-link to='/firebase-testing'>go testing</router-link></span>
   </div>
 </template>
 
@@ -39,3 +38,22 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+button[type='button'] {
+  display: inline-block;
+  padding: 0.3em 1em;
+  font-size: 1em;
+  text-decoration: none;
+  color: #eb8a44;
+  border: solid 2px #eb8a44;
+  background: #ffffff;
+  border-radius: 3px;
+  transition: .4s;
+}
+button[type='button']:hover {
+  background: #eb8a44;
+  color: white;
+}
+
+</style>

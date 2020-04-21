@@ -57,6 +57,10 @@ export default {
 </script>
 
 <style scoped>
+  a {
+    text-decoration: none;
+    color: #4b7447;
+  }
   img {
     width: 3em;
     height: auto;
@@ -89,6 +93,14 @@ export default {
     left: 0;
     height: 100%;
     width: 100%;
+  }
+  .recipieName{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .recipieName p{
+    overflow: hidden;
   }
 
   .lastCooked {

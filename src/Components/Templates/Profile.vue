@@ -1,19 +1,18 @@
 <template>
   <div>
-    <div>
-      <img :src='user.photoURL' wovn-ignore>
+    <div class='profile-row'>
+      <img class='photo' :src='user.photoURL' wovn-ignore>
     </div>
     <div>
-      <span> ID </span>
-      <span wovn-ignore> {{ user.uid }} </span>
-    </div>
-    <div>
-      <span> Name </span>
       <span wovn-ignore> {{ user.displayName }} </span>
     </div>
-    <div>
-      <span> Group ID</span>
-      <span wovn-ignore> {{ user.gId }} </span>
+    <div class='profile-row'>
+      <span class='profile-label'> ID </span>
+      <span class='profile-value' wovn-ignore> {{ user.uid }} </span>
+    </div>
+    <div class='profile-row'>
+      <span class='profile-label'> Group ID</span>
+      <span class='profile-value' wovn-ignore> {{ user.gId }} </span>
     </div>
     <div>
       <button type='button' @click='logout'>Logout</button>
@@ -40,3 +39,49 @@ export default {
 
 }
 </script>
+
+<style scoped>
+  img.photo {
+    max-width: 400px
+  }
+
+  .profile-row{
+    margin-bottom: 1vh;
+  }
+
+  .profile-label {
+    display: inline-block;
+    width: 10vw;
+    text-align: left;
+  }
+
+  .profile-value {
+    display: inline-block;
+    width: 30vw;
+    text-align: left;
+    padding: 0.3em;
+    border-radius: 10px;
+    background-color: #dddddd;
+    white-space: -moz-pre-wrap; /* Mozilla */
+    white-space: -pre-wrap;     /* Opera 4-6 */
+    white-space: -o-pre-wrap;   /* Opera 7 */
+    white-space: pre-wrap;      /* CSS3 */
+    word-wrap: break-word;      /* IE 5.5+ */
+  }
+
+  button[type='button'] {
+    display: inline-block;
+    padding: 0.3em 1em;
+    font-size: 1em;
+    text-decoration: none;
+    color: #eb8a44;
+    border: solid 2px #eb8a44;
+    background: #ffffff;
+    border-radius: 3px;
+    transition: .4s;
+  }
+  button[type='button']:hover {
+    background: #eb8a44;
+    color: white;
+  }
+</style>
