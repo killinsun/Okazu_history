@@ -52,12 +52,14 @@ export default {
   .profile-label {
     display: inline-block;
     width: 10vw;
+    min-width: 150px;
     text-align: left;
   }
 
   .profile-value {
     display: inline-block;
     width: 30vw;
+    min-width: 400px;
     text-align: left;
     padding: 0.3em;
     border-radius: 10px;
@@ -67,6 +69,18 @@ export default {
     white-space: -o-pre-wrap;   /* Opera 7 */
     white-space: pre-wrap;      /* CSS3 */
     word-wrap: break-word;      /* IE 5.5+ */
+  }
+
+  @media (max-width: 800px) {
+    .profile-row {
+      font-size: 0.5em;
+    }
+    .profile-label {
+      min-width: 60px;
+    }
+    .profile-value {
+      min-width: 250px;
+    }
   }
 
   button[type='button'] {
