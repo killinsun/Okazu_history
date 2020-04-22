@@ -22,6 +22,7 @@ export default {
       recipie.imageSrc = await firebase.uploadImage(payload.uid, docRef.id, payload.file)
     }
     this.commit('CREATE_NEW_RECIPIE', { id: docRef.id, recipie: recipie })
+    this.commit('ON_LOADING_STATUS_CHANGED', false)
   },
 
   async update_recipie ({ commit }, payload) {
@@ -31,6 +32,7 @@ export default {
     await firebase.updateDoc('recipies', payload.updatedItems.recipieId, payload.updatedItems)
 
     this.commit('UPDATE_RECIPIE_STATE', payload.updatedItems)
+    this.commit('ON_LOADING_STATUS_CHANGED', false)
   },
 
   async fetch_recipies ({ commit }, payload) {

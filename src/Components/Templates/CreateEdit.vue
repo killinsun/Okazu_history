@@ -113,6 +113,7 @@ export default {
       reader.readAsDataURL(file)
     },
     createNewRecipie: function () {
+      this.$store.commit('ON_LOADING_STATUS_CHANGED', true)
       this.$store.dispatch('store_new_recipie', {
         uid: this.user.uid,
         gId: this.user.gId,
@@ -125,6 +126,7 @@ export default {
       this.$router.push('/', () => {}, () => {})
     },
     updateRecipie: function () {
+      this.$store.commit('ON_LOADING_STATUS_CHANGED', true)
       this.$store.dispatch('update_recipie', {
         uid: this.user.uid,
         updatedItems: {

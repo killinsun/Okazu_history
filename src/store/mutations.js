@@ -94,5 +94,9 @@ export default {
   */
   ON_AUTH_STATUS_CHANGED (state, status) {
     state.status = status
+  },
+
+  ON_LOADING_STATUS_CHANGED (state, loading) {
+    state.loading = loading
   }
 }

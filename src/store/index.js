@@ -10,7 +10,8 @@ export default new Vuex.Store({
   state: {
     recipies: [],
     user: {},
-    status: false
+    status: false,
+    loading: false
   },
   getters,
   mutations,
