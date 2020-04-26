@@ -2,10 +2,12 @@ import firebase from '@/firebase'
 import utils from '@/utils'
 
 export default {
+
   fetch_user ({ commit }, user) {
     this.commit('ON_AUTH_STATE_CHANGED', user)
     this.commit('ON_AUTH_STATUS_CHANGED', !!user.uid)
   },
+
   async store_new_recipie ({ commit }, payload) {
     const recipie = {
       name: payload.newRecipieItem.name,
@@ -22,7 +24,6 @@ export default {
       recipie.imageSrc = await firebase.uploadImage(payload.uid, docRef.id, payload.file)
     }
     this.commit('CREATE_NEW_RECIPIE', { id: docRef.id, recipie: recipie })
-    this.commit('ON_LOADING_STATUS_CHANGED', false)
   },
 
   async update_recipie ({ commit }, payload) {
@@ -53,5 +54,11 @@ export default {
   async increment_cooked_counter ({ commit }, payload) {
     await firebase.incrementDocField('recipies', payload.id, 'count')
     this.commit('INCREMENT_COOKED_COUNTER', { id: payload.id })
+  },
+
+  async delete_recipie ({ commit }, payload) {
+    await firebase.deleteDocById('recipies', payload.deleteRecipieItem.recipieId)
+    this.commit('DELETE_RECIPIE', payload.deleteRecipieItem.recipieId)
+    this.commit('ON_LOADING_STATUS_CHANGED', false)
   }
 }

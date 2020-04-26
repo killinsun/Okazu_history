@@ -19,6 +19,15 @@
     <div class='controlButton'>
         <button
           type='button'
+          class='deleteButton'
+          @click='deleteRecipie'
+          v-if='id'
+          :disabled='isResizing'
+        >
+        Delete
+        </button>
+        <button
+          type='button'
           class='createButton'
           @click='createNewRecipie'
           v-if='!id'
@@ -138,6 +147,19 @@ export default {
       })
       this.name = ''
       this.$router.push('/', () => {}, () => {})
+    },
+    deleteRecipie: function () {
+      const result = window.confirm("Are you sure? You can't restore this state.")
+      if (!result) return
+
+      this.$store.commit('ON_LOADING_STATUS_CHANGED', true)
+      this.$store.dispatch('delete_recipie', {
+        deleteRecipieItem: {
+          recipieId: this.id
+        }
+      })
+      this.name = ''
+      this.$router.push('/', () => {}, () => {})
     }
   }
 }
@@ -206,6 +228,7 @@ input:focus {
 button[type='button'] {
   display: inline-block;
   padding: 0.3em 1em;
+  margin: 0.5em;
   font-size: 1em;
   text-decoration: none;
   color: #eb8a44;
@@ -213,6 +236,12 @@ button[type='button'] {
   background: #ffffff;
   border-radius: 3px;
   transition: .4s;
+}
+
+button[type='button'].deleteButton {
+  background: #ee3333;
+  color: white;
+  border: solid 2px #ee3333;
 }
 button[type='button']:hover {
   background: #eb8a44;

@@ -21,6 +21,7 @@ export default {
     state.recipies.push(
       recipie
     )
+    state.loading = false
   },
 
   /*
@@ -40,6 +41,22 @@ export default {
       if (recipie.favorited) r.favorited = recipie.favorited
       if (recipie.imageSrc) r.imageSrc = recipie.imageSrc
     })
+
+    state.loading = false
+  },
+
+  /*
+    * Delete Recipie from store
+    * @state {Object} this Store's state
+    * @recipieId {String} recipie's id which you want to delete
+  */
+  DELETE_RECIPIE (state, recipieId) {
+    const filtered = state.recipies.filter(r => {
+      return r.id !== recipieId
+    })
+
+    state.recipies = filtered
+    state.loading = false
   },
 
   /*

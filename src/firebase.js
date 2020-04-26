@@ -108,5 +108,12 @@ export default {
     } catch (e) {
       // console.error(e)
     }
+  },
+  deleteDocById (collection, docId) {
+    try {
+      return firebase.firestore().collection(collection).doc(docId).delete()
+    } catch (e) {
+
+    }
   }
 }
