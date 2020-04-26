@@ -7,6 +7,7 @@ export default {
     * @{ recipies } {Object} recipies which are fetched by action
   */
   STORE_RECIPIES (state, { recipies }) {
+    if (state.loading) return
     state.recipies = recipies
   },
 
@@ -37,6 +38,7 @@ export default {
     filtered.forEach(r => {
       if (recipie.name) r.name = recipie.name
       if (recipie.lastDate) r.lastDate = recipie.lastDate
+      if (recipie.count) r.count = recipie.count
       if (recipie.deleted) r.deleted = recipie.deleted
       if (recipie.favorited) r.favorited = recipie.favorited
       if (recipie.imageSrc) r.imageSrc = recipie.imageSrc

@@ -4,14 +4,24 @@
       {{ user.email }}
     </div>
     <router-link to='/'>Go home</router-link>
+    <MyInput label='' :value.sync='inputValue' type='text' />
   </div>
 </template>
 
 <script>
 import firebase from '@/firebase'
+import MyInput from '@/Components/Atoms/MyInput.vue'
 
 export default {
   name: 'FirebaseTesting',
+  data: function () {
+    return {
+      inputValue: ''
+    }
+  },
+  components: {
+    MyInput
+  },
   created: function () {
     firebase.onAuth()
   },
