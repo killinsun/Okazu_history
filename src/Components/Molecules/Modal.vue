@@ -137,6 +137,7 @@ export default {
   margin-left: 5vw;
   margin-bottom: 20px;
   font-weight: bold;
+  color: #ffffff;
 }
 
 .closeButton {

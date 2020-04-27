@@ -51,7 +51,6 @@ export default {
       this.$store.dispatch('fetch_recipies')
     },
     showModal () {
-      console.log('show')
       this.modalVisible = true
     }
   }
