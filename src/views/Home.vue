@@ -17,7 +17,9 @@ export default {
 
 <style scoped>
 .home {
-  margin-top: 3em;
-  height: 100%;
+  height: auto;
+  padding-top: 2em;
+  max-height:550px;
+  overflow: hidden;
 }
 </style>

@@ -19,7 +19,7 @@ export default {
       updatedImageSrc: null,
       uploadedFile: null,
       smallImage: null,
-      maxWidth: 400
+      maxWidth: 300
     }
   },
   props: {
@@ -90,10 +90,10 @@ label > input[type='file'] {
 .thumbnailPic {
   margin: auto;
   position: relative;
-  max-width: 400px;
+  max-width: 300px;
 }
 .thumbnailPic > label > img {
-  max-width: 400px;
+  max-width: 300px;
 }
 
 </style>

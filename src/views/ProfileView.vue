@@ -17,7 +17,7 @@ export default {
 
 <style scoped>
 .profile {
-  margin-top: 3em;
-  height: 100%;
+  padding-top: 2em;
+  height: auto;
 }
 </style>

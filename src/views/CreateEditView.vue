@@ -22,7 +22,7 @@ export default {
 
 <style scoped>
 .createEditView {
-  margin-top: 3em;
-  height: 100%;
+  padding-top: 2em;
+  height: auto;
 }
 </style>
