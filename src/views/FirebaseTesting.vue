@@ -1,26 +1,33 @@
 <template>
   <div id='firebase-testing'>
+    <Modal title='test!!!' message='hogeee' :visible.sync='modalVisible' />
     <div v-if='userStatus'>
       {{ user.email }}
     </div>
     <router-link to='/'>Go home</router-link>
     <MyInput label='' :value.sync='inputValue' type='text' />
+    <MyButton value='show modal' v-on:onMyButtonClick='showModal()' />
   </div>
 </template>
 
 <script>
 import firebase from '@/firebase'
 import MyInput from '@/Components/Atoms/MyInput.vue'
+import MyButton from '@/Components/Atoms/MyButton.vue'
+import Modal from '@/Components/Molecules/Modal.vue'
 
 export default {
   name: 'FirebaseTesting',
   data: function () {
     return {
-      inputValue: ''
+      inputValue: '',
+      modalVisible: false
     }
   },
   components: {
-    MyInput
+    MyInput,
+    MyButton,
+    Modal
   },
   created: function () {
     firebase.onAuth()
@@ -42,6 +49,10 @@ export default {
     },
     load: async function () {
       this.$store.dispatch('fetch_recipies')
+    },
+    showModal () {
+      console.log('show')
+      this.modalVisible = true
     }
   }
 }

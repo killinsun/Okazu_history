@@ -20,6 +20,5 @@ export default {
   height: auto;
   padding-top: 2em;
   max-height:550px;
-  overflow: hidden;
 }
 </style>

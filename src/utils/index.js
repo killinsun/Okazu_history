@@ -17,5 +17,10 @@ export default {
       })
     })
     return transformedRecipies
+  },
+
+  returnFormattedDate (date) {
+    const formattedLastDate = format(date, ' yyyy/MM/dd')
+    return formattedLastDate
   }
 }

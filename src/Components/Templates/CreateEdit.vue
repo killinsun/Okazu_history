@@ -1,5 +1,15 @@
 <template>
   <main @click.self='disableEditing'>
+    <Modal
+      title='Delete the recipie'
+      message='Are you sure?  You CANNOT restore the state.'
+      :visible.sync='modalVisible'
+      primaryButtonValue='DELETE'
+      primaryButtonClass='danger'
+      secondaryButtonValue='CANCEL'
+      v-on:onPrimaryClick='deleteRecipie()'
+      v-on:onSecondaryClick='closeDeleteModal()'
+    />
     <ThumbnailPic :imageSrc.sync='imageSrc' :isResizing.sync='isResizing' :uploadedFile.sync='uploadedFile' />
     <MyInput label='' :value.sync='name' type='text' placeholder='Recipie Name' />
     <div class='recipieStatus' v-if='id'>
@@ -17,7 +27,7 @@
         <button
           type='button'
           class='deleteButton'
-          @click='deleteRecipie'
+          @click='showDeleteModal'
           v-if='id'
           :disabled='isResizing'
         >
@@ -46,12 +56,14 @@
 </template>
 
 <script>
+import Modal from '@/Components/Molecules/Modal.vue'
 import MyInput from '@/Components/Atoms/MyInput.vue'
 import ThumbnailPic from '@/Components/Atoms/ThumbnailPic.vue'
 
 export default {
   name: 'CreateEdit',
   components: {
+    Modal,
     MyInput,
     ThumbnailPic
   },
@@ -69,7 +81,8 @@ export default {
       recipie: null,
       uploadedFile: null,
       isResizing: false,
-      editing: false
+      editing: false,
+      modalVisible: false
     }
   },
   created () {
@@ -116,9 +129,6 @@ export default {
       this.$router.push('/', () => {}, () => {})
     },
     deleteRecipie: function () {
-      const result = window.confirm("Are you sure? You can't restore this state.")
-      if (!result) return
-
       this.$store.commit('ON_LOADING_STATUS_CHANGED', true)
       this.$store.dispatch('delete_recipie', {
         deleteRecipieItem: {
@@ -127,6 +137,12 @@ export default {
       })
       this.name = ''
       this.$router.push('/', () => {}, () => {})
+    },
+    showDeleteModal: function () {
+      this.modalVisible = true
+    },
+    closeDeleteModal: function () {
+      this.modalVisible = false
     },
     enableEditing: function () {
       this.editing = true

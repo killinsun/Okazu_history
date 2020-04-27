@@ -23,6 +23,7 @@ export default {
     if (payload.file != null) {
       recipie.imageSrc = await firebase.uploadImage(payload.uid, docRef.id, payload.file)
     }
+    recipie.lastDate = utils.returnFormattedDate(recipie.lastDate)
     this.commit('CREATE_NEW_RECIPIE', { id: docRef.id, recipie: recipie })
   },
 
