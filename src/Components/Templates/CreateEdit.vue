@@ -1,6 +1,6 @@
 <template>
   <main @click.self='disableEditing'>
-    <ThumbnailPic :imageSrc.sync='imageSrc' :isResizing.sync='isResizing' />
+    <ThumbnailPic :imageSrc.sync='imageSrc' :isResizing.sync='isResizing' :uploadedFile.sync='uploadedFile' />
     <MyInput label='' :value.sync='name' type='text' placeholder='Recipie Name' />
     <div class='recipieStatus' v-if='id'>
       <p class='lastDay'>
@@ -68,8 +68,6 @@ export default {
       imageSrc: '/noimage.jpg',
       recipie: null,
       uploadedFile: null,
-      smallImage: null,
-      maxWidth: 400,
       isResizing: false,
       editing: false
     }

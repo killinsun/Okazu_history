@@ -13,7 +13,6 @@ export default {
     Recipie
   },
   created: function () {
-    console.log(this.recipies.length)
     if (this.recipies.length > 0 ||
           this.$store.state.loading === true) return
     this.load()

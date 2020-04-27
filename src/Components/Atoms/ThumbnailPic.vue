@@ -16,7 +16,10 @@ export default {
   data: function () {
     return {
       isResizing: false,
-      updatedImageSrc: null
+      updatedImageSrc: null,
+      uploadedFile: null,
+      smallImage: null,
+      maxWidth: 400
     }
   },
   props: {
@@ -66,6 +69,7 @@ export default {
             this.uploadedFile = imageFile
             this.isResizing = false
             this.$emit('update:isResizing', this.isResizing)
+            this.$emit('update:uploadedFile', this.uploadedFile)
           }, file.type, 1)
         }
         img.src = e.target.result
