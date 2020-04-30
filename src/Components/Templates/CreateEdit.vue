@@ -14,11 +14,11 @@
     <MyInput label='' :value.sync='name' type='text' placeholder='Recipie Name' />
     <div class='recipieStatus' v-if='id'>
       <p class='lastDay'>
-        The last day you cooked: {{ recipie.lastDate }}
+        The last day you cooked: <span wovn-ignore> {{ recipie.lastDate }} </span>
       </p>
       <div class='coockedCountWrapper'>
       <p class='cookedCount' v-if='!editing' @click='enableEditing'>
-        You cooked: {{ innerCounter }} times
+        You cooked: <span wovn-ignore> {{ innerCounter }} </span> times
       </p>
       <MyInput label='' :value.sync='innerCounter' type='number' v-if='editing' />
       </div>
