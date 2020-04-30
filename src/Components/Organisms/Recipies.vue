@@ -27,7 +27,7 @@ export default {
       return this.$store.getters.user
     },
     recipies: function () {
-      return this.$store.state.recipies
+      return this.$store.getters.getRecipies
     },
     filteredRecipies: function () {
       let data = this.recipies
