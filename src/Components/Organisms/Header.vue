@@ -2,7 +2,7 @@
   <div id='header-container'>
     <div class='logo-area'>
       <router-link to='/'>
-        <img src='/logo.png'>
+        <img src='/okazulog_black.png'>
       </router-link>
     </div>
     <div class='search-bar-area'>
@@ -55,7 +55,6 @@ div.logo-area {
 }
 
 div.logo-area img {
-  width: 100%;
   height: auto;
 }
 
@@ -107,6 +106,8 @@ img.profile-icon {
 }
 
 @media screen and (max-width: 500px ){
+  div.logo-area img {
+  }
   .search-bar-area{
     display: none
   }

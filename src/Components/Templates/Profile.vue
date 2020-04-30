@@ -42,7 +42,7 @@ export default {
 
 <style scoped>
   img.photo {
-    max-width: 400px
+    max-width: 300px
   }
 
   .profile-row{

@@ -1,6 +1,6 @@
 <template>
   <div class='recipies'>
-    <Recipie v-for='recipie in recipies' :key='recipie.id' :recipie='recipie' />
+    <Recipie v-for='recipie in filteredRecipies' :key='recipie.id' :recipie='recipie' />
   </div>
 </template>
 
@@ -9,6 +9,11 @@ import Recipie from '@/Components/Molecules/Recipie.vue'
 
 export default {
   name: 'Recipies',
+  data: function () {
+    return {
+      searchWord: ''
+    }
+  },
   components: {
     Recipie
   },
@@ -23,6 +28,19 @@ export default {
     },
     recipies: function () {
       return this.$store.state.recipies
+    },
+    filteredRecipies: function () {
+      let data = this.recipies
+
+      const filterWord = this.searchWord && this.searchWord.toLowerCase()
+      if (filterWord) {
+        data = data.filter(function (row) {
+          return Object.keys(row).some(function (key) {
+            return String(row[key]).toLowerCase().indexOf(filterWord) > -1
+          })
+        })
+      }
+      return data
     }
   },
   methods: {
