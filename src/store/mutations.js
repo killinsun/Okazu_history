@@ -117,5 +117,9 @@ export default {
 
   ON_LOADING_STATUS_CHANGED (state, loading) {
     state.loading = loading
+  },
+
+  ON_INPUT_SEARCH_WORD (state, searchWord) {
+    state.searchWord = searchWord
   }
 }

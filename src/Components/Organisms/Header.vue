@@ -9,8 +9,8 @@
       <form>
         <div class='search-bar'>
           <i class='fas fa-search search_icon'/>
-          <input type='text' placeholder='Search'>
-          <i class='fas fa-times search_icon'/>
+          <input type='text' placeholder='Search' v-model='searchWord'>
+          <i class='fas fa-times search_icon' @click='clearSearchText'/>
         </div>
       </form>
     </div>
@@ -25,12 +25,30 @@
 <script>
 export default {
   name: 'Header',
+  data: function () {
+    return {
+      inputtingSearchWord: ''
+    }
+  },
   computed: {
     user () {
       return this.$store.getters.user
     },
     userStatus () {
       return this.$store.getters.userStatus
+    },
+    searchWord: {
+      get () {
+        return this.$store.state.searchWord
+      },
+      set (val) {
+        this.$store.commit('ON_INPUT_SEARCH_WORD', val)
+      }
+    }
+  },
+  methods: {
+    clearSearchText () {
+      this.searchWord = ''
     }
   }
 }
@@ -49,9 +67,6 @@ div#header-container {
 
 img {
   max-height: 50px;
-}
-
-div.logo-area {
 }
 
 div.logo-area img {

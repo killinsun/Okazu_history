@@ -11,7 +11,8 @@ export default new Vuex.Store({
     recipies: [],
     user: {},
     status: false,
-    loading: false
+    loading: false,
+    searchWord: ''
   },
   getters,
   mutations,
