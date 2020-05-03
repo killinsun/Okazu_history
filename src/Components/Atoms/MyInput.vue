@@ -28,6 +28,11 @@ export default {
     },
     placeholder: {
       require: false
+    },
+    wrapperClasses: {
+      require: false,
+      type: String,
+      default: 'inputWrapper'
     }
   },
   computed: {
@@ -45,6 +50,33 @@ export default {
 </script>
 
 <style>
+.inputWrapper {
+  position: relative;
+  width: 95%;
+  margin: 40px auto;
+}
+.inputWrapper:after {
+  display: block;
+  height: 4px;
+  margin-top: -1px;
+  content: '';
+  border-width: 0 1px 1px 1px;
+  border-style: solid;
+  border-color: #eb8a44;
+}
+@media (min-width: 800px) {
+  .inputWrapper {
+    width: 50%;
+  }
+}
+.inputWrapper.fix-fullsize{
+  width: 95%;
+}
+
+.inputWrapper.no-border-bottom:after {
+  border-style: none;
+}
+
 input {
   color: #4b7447;
   font-size: 1em;
@@ -56,24 +88,8 @@ input {
   border: 0;
 }
 
-.inputWrapper {
-  position: relative;
-  width: 95%;
-  margin: 40px auto;
-}
-@media (min-width: 800px) {
-  .inputWrapper {
-    width: 50%;
-  }
-}
-.inputWrapper:after {
-  display: block;
-  height: 4px;
-  margin-top: -1px;
-  content: '';
-  border-width: 0 1px 1px 1px;
-  border-style: solid;
-  border-color: #eb8a44;
+.no-outline label input:focus {
+  outline: 0;
 }
 
 </style>
