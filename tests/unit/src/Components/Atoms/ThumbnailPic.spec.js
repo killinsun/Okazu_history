@@ -19,5 +19,30 @@ describe('ThumbnailPic.vue', () => {
       })
       expect(wrapper.find('img').attributes().src).to.equal('./assets/thumbnail.jpg')
     })
+    describe('Default', () => {
+      it('should appear when component is default', () => {
+        const wrapper = shallowMount(Component, {
+          propsData: {
+            imageSrc: './assets/thumbnail.jpg'
+          },
+          localVue
+        })
+        expect(wrapper.find('img').exists()).to.equal(true)
+      })
+    })
+    describe('A image is resizing', () => {
+      it('should not appear a image when component is being resized it', () => {
+        const wrapper = shallowMount(Component, {
+          propsData: {
+            imageSrc: './assets/thumbnail.jpg'
+          },
+          localVue
+        })
+        wrapper.setData({ isResizing: true })
+        wrapper.vm.$nextTick(() => {
+          expect(wrapper.find('img').exists()).to.equal(false)
+        })
+      })
+    })
   })
 })

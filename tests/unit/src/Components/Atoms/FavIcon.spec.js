@@ -16,7 +16,7 @@ describe('FavIcon.vue', () => {
   const state = {
     state: {
       recipies: [{
-        id: 0,
+        id: 'testId',
         name: 'hoge',
         count: 0,
         lastDate: null,
@@ -36,7 +36,7 @@ describe('FavIcon.vue', () => {
       it('should have following classes fas fa-heart', () => {
         const wrapper = shallowMount(Component, {
           propsData: {
-            recipieId: 0,
+            recipieId: 'testId',
             favorited: true
           }
         })
@@ -48,7 +48,7 @@ describe('FavIcon.vue', () => {
       it('should have following classes far fa-heart', () => {
         const wrapper = shallowMount(Component, {
           propsData: {
-            recipieId: 0,
+            recipieId: 'testId',
             favorited: false
           }
         })
@@ -69,6 +69,7 @@ describe('FavIcon.vue', () => {
       it('should be triggered action', () => {
         const wrapper = shallowMount(Component, {
           propsData: {
+            recipieId: 'testId',
             favorited: false
           },
           store,

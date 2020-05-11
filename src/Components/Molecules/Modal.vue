@@ -16,8 +16,8 @@
           </p>
         </div>
         <div class='modalFooter'>
-          <MyButton :value='secondaryButtonValue' :class='secondaryButtonClass' v-on:onMyButtonClick='secondaryEvent' />
-          <MyButton :value='primaryButtonValue' :class='primaryButtonClass'  v-on:onMyButtonClick='primaryEvent'/>
+          <MyButton class='secondaryButton' :value='secondaryButtonValue' :class='secondaryButtonClass' v-on:onMyButtonClick='secondaryEvent' />
+          <MyButton class='primaryButton' :value='primaryButtonValue' :class='primaryButtonClass'  v-on:onMyButtonClick='primaryEvent'/>
         </div>
 
       </div>
@@ -37,7 +37,6 @@ export default {
   props: {
     title: {
       type: String,
-      required: true,
       default: 'Information'
     },
     message: {
@@ -78,7 +77,6 @@ export default {
   methods: {
     close () {
       this.updatedVisible = false
-      console.log(this.updatedVisible)
     },
     primaryEvent () {
       this.$emit('onPrimaryClick')

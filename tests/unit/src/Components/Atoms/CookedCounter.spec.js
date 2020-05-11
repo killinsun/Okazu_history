@@ -11,6 +11,7 @@ describe('CookedCounter.vue', () => {
     it('should have a counter', () => {
       const wrapper = shallowMount(Component, {
         propsData: {
+          recipieId: 'testId',
           counter: 100
         }
       })
@@ -23,6 +24,7 @@ describe('CookedCounter.vue', () => {
       it('should be emitted an event', () => {
         const wrapper = shallowMount(Component, {
           propsData: {
+            recipieId: 'testId',
             counter: 100
           }
         })

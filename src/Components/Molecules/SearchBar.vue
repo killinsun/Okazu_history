@@ -4,7 +4,7 @@
       <div class='search-bar' :class='inputtingClass'>
         <i class='fas fa-search search_icon'/>
         <MyInput class='fix-fullsize no-border-bottom no-outline' label='' :value.sync='searchWord' type='text' placeholder='Search' />
-        <i class='fas fa-times search_icon' v-if='inputting' @click='clearSearchText'/>
+        <i class='fas fa-times search_icon' v-show='inputting' @click='clearSearchText'/>
       </div>
     </form>
   </div>
@@ -33,7 +33,7 @@ export default {
       }
     },
     inputting () {
-      return this.searchWord.length > 0
+      return this.searchWord && this.searchWord.length > 0
     },
     inputtingClass () {
       return this.inputting ? 'focus-search-bar' : null
